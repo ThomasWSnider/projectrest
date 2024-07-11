@@ -17,6 +17,11 @@ class MissionsService {
     const ratMissions = await dbContext.Missions.find({ ratId: ratId }).populate('location')
     return ratMissions
   }
+
+  async getLocationMissions(locationId) {
+    const locationMissions = await dbContext.Missions.find({ locationId: locationId }).populate('rat location', '-name -picture')
+    return locationMissions
+  }
 }
 
 export const missionsService = new MissionsService
